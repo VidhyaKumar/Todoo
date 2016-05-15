@@ -19,5 +19,5 @@ Route::auth();
 
 Route::get('/tasks', 'TasksController@index');
 Route::post('/tasks', 'TasksController@create');
-Route::patch('/tasks', 'TasksController@update');
-Route::delete('/tasks', 'TasksController@delete');
+Route::patch('/tasks/{id}', 'TasksController@update');
+Route::delete('/tasks/{id}', 'TasksController@delete');
