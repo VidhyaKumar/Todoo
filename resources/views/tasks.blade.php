@@ -17,10 +17,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Pending Tasks</div>
                 <div class="panel-body">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr><th>Task</th></tr>
-                    </thead>
+                  <table class="table table-striped no-margin-bottom">
                     <tbody>
                       @if (count($tasks) > 0)
                         @foreach ($tasks as $task)
@@ -32,7 +29,7 @@
                           @endif
                           <span class="pull-right">
                             @include('forms.task_complete')
-                            @include('forms.task_delete')                            
+                            @include('forms.task_delete')
                           </span>
                         </td></tr>
                         @endforeach
