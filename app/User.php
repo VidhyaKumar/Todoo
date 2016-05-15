@@ -29,8 +29,8 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-    // public function addTask(Task $task)
-    // {
-    //   return $this->tasks()->save($task);
-    // }
+    public function addTask(Task $task)
+    {
+      return $this->tasks()->save($task);
+    }
 }
