@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@index');
+Route::get('/about', 'PagesController@about');
+Route::get('/contact', 'PagesController@contact');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/tasks', 'TasksController@index');
+Route::post('/tasks', 'TasksController@create');
+Route::patch('/tasks', 'TasksController@update');
+Route::delete('/tasks', 'TasksController@delete');
