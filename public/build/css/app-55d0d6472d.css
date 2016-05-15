@@ -1,0 +1,19 @@
+body {
+  font-family: 'Lato'; }
+
+.fa-btn {
+  margin-right: 6px; }
+
+.inline {
+  display: inline; }
+
+.strike {
+  text-decoration: line-through; }
+
+.btn:focus {
+  outline: none !important; }
+
+.no-margin-bottom {
+  margin-bottom: 0 !important; }
+
+/*# sourceMappingURL=app.css.map */
