@@ -7,4 +7,10 @@ body {
 .inline {
   display: inline; }
 
+.strike {
+  text-decoration: line-through; }
+
+.btn:focus {
+  outline: none !important; }
+
 /*# sourceMappingURL=app.css.map */
