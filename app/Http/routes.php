@@ -21,3 +21,7 @@ Route::get('/tasks', 'TasksController@index');
 Route::post('/tasks', 'TasksController@create');
 Route::patch('/tasks/{id}', 'TasksController@update');
 Route::delete('/tasks/{id}', 'TasksController@delete');
+
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function(){
+  Route::resource('tasks', 'ApiController', ['only' => ['index']]);
+});
