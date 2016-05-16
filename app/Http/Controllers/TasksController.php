@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Task;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class TasksController extends Controller
     $tasks = $request->user()->tasks()
              ->orderBy('created_at', 'desc')
              ->get();
-    return view('tasks', compact('tasks'));
+    $api_token = $request->user()['api_token'];
+    return view('tasks', compact('tasks', 'api_token'));
   }
 
   public function create(Request $request)
