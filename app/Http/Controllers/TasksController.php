@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Cache;
 use App\Task;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -10,26 +10,18 @@ use Illuminate\Http\Request;
 class TasksController extends Controller
 {
   /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    $this->middleware('auth');
-  }
-
-  /**
    * Show the application dashboard.
    *
    * @return \Illuminate\Http\Response
    */
   public function index(Request $request)
   {
-    $tasks = $request->user()->tasks()
-             ->orderBy('created_at', 'desc')
-             ->get();
-    $api_token = $request->user()['api_token'];
+    $user = $request->user();
+    $tasks = Cache::remember("user:{$user->id}:tasks", 60,
+    function() use ($user) {
+      return $user->tasks()->orderBy('created_at', 'desc')->get();
+    });
+    $api_token = $user->api_token;
     return view('tasks', compact('tasks', 'api_token'));
   }
 
