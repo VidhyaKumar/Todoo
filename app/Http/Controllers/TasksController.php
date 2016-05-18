@@ -42,7 +42,7 @@ class TasksController extends Controller
 
   public function delete(Request $request)
   {
-    $task = app('App\Task')->findOrFail($request->id)->delete();
+    app('App\Task')->findOrFail($request->id)->delete();
     return back();
   }
 }
