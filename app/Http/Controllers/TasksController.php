@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Cache;
 use App\Task;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -17,7 +16,7 @@ class TasksController extends Controller
   public function index(Request $request)
   {
     $user = $request->user();
-    $tasks = Cache::remember("user:{$user->id}:tasks", 60,
+    $tasks = app('cache')->remember("user:{$user->id}:tasks", 60,
     function() use ($user) {
       return $user->tasks()->orderBy('created_at', 'desc')->get();
     });
@@ -35,7 +34,7 @@ class TasksController extends Controller
 
   public function update(Request $request)
   {
-    $task = Task::findOrFail($request->id);
+    $task = app('App\Task')->findOrFail($request->id);
     $task->completed = $task->completed == 1 ? false : true;
     $task->save();
     return $task;
@@ -43,7 +42,7 @@ class TasksController extends Controller
 
   public function delete(Request $request)
   {
-    $task = Task::findOrFail($request->id)->delete();
+    $task = app('App\Task')->findOrFail($request->id)->delete();
     return back();
   }
 }
